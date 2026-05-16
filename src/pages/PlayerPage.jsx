@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import IconButton from "../components/IconButton";
 import GlobalLyricsSearch from "../features/player/GlobalLyricsSearch";
 import Lyrics from "../features/player/Lyrics";

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { fetchJson, getErrorMessage } from "../../services/api";
 
 function findCurrentIndex(lyrics, time) {
