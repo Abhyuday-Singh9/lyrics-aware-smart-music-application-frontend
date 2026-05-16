@@ -43,10 +43,7 @@ export default function PlaylistsPage({ state, actions }) {
           const songCount = state.playlists[name].length;
 
           return (
-            <article
-              key={name}
-              className="playlist-card"
-            >
+            <article key={name} className="playlist-card">
               <button
                 className="playlist-card-main"
                 onClick={() => actions.onPlaylistOpen(name)}

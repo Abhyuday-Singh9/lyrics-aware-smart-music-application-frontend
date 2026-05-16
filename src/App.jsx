@@ -62,9 +62,7 @@ export default function App() {
         console.error("Failed to load library", err);
         setAppError(getErrorMessage(err, "Failed to load your library."));
       })
-      .finally(() =>
-        setLoading((current) => ({ ...current, library: false })),
-      );
+      .finally(() => setLoading((current) => ({ ...current, library: false })));
   }, []);
 
   useEffect(() => {
@@ -109,9 +107,7 @@ export default function App() {
         setSections([]);
         setAppError(getErrorMessage(err, "Failed to analyze song sections."));
       })
-      .finally(() =>
-        setLoading((current) => ({ ...current, query: false })),
-      );
+      .finally(() => setLoading((current) => ({ ...current, query: false })));
   }, [song]);
 
   useEffect(() => {
@@ -138,9 +134,9 @@ export default function App() {
   };
 
   const getPlaybackQueue = (currentSong) => {
-    const selectedPlaylistSongs = (playlists[selectedPlaylistName] || []).filter(
-      (item) => songs.includes(item),
-    );
+    const selectedPlaylistSongs = (
+      playlists[selectedPlaylistName] || []
+    ).filter((item) => songs.includes(item));
 
     if (
       selectedPlaylistSongs.length > 0 &&
@@ -315,7 +311,9 @@ export default function App() {
 
     setPlaylists((currentPlaylists) => {
       return Object.fromEntries(
-        Object.entries(currentPlaylists).filter(([name]) => name !== playlistName),
+        Object.entries(currentPlaylists).filter(
+          ([name]) => name !== playlistName,
+        ),
       );
     });
 
