@@ -1,7 +1,10 @@
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API = import.meta.env.VITE_API_URL;
 
 class ApiError extends Error {
-  constructor(message, { kind = "unknown", status = null, details = null } = {}) {
+  constructor(
+    message,
+    { kind = "unknown", status = null, details = null } = {},
+  ) {
     super(message);
     this.name = "ApiError";
     this.kind = kind;
@@ -47,10 +50,13 @@ async function fetchJson(path, options) {
   try {
     response = await fetch(`${API}${path}`, options);
   } catch (error) {
-    throw createApiError("Unable to reach the server. Check that the backend is running.", {
-      kind: "network",
-      details: error,
-    });
+    throw createApiError(
+      "Unable to reach the server. Check that the backend is running.",
+      {
+        kind: "network",
+        details: error,
+      },
+    );
   }
 
   const data = await response.json().catch(() => ({}));
