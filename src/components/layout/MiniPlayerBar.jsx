@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ROUTES } from "../../app/routes";
-import { API_BASE_URL, getSongUrl } from "../../services/api";
+import { API, getSongUrl } from "../../services/api";
 import IconButton from "../IconButton";
 
 const ICON_PREVIOUS = "\u23ee";
@@ -74,7 +74,7 @@ export default function MiniPlayerBar({ state, actions }) {
 
     if (playedSeconds < 0.5) return;
 
-    fetch(`${API_BASE_URL}/history`, {
+    fetch(`${API}/history`, {
       body: JSON.stringify({
         endedAt: new Date().toISOString(),
         endedAtSeconds: audio.currentTime,

@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5000";
+const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 class ApiError extends Error {
   constructor(message, { kind = "unknown", status = null, details = null } = {}) {
@@ -45,7 +45,7 @@ async function fetchJson(path, options) {
   let response;
 
   try {
-    response = await fetch(`${API_BASE_URL}${path}`, options);
+    response = await fetch(`${API}${path}`, options);
   } catch (error) {
     throw createApiError("Unable to reach the server. Check that the backend is running.", {
       kind: "network",
@@ -83,11 +83,11 @@ async function fetchJson(path, options) {
 }
 
 function getSongUrl(song) {
-  return `${API_BASE_URL}/songs/${encodeURIComponent(song)}`;
+  return `${API}/songs/${encodeURIComponent(song)}`;
 }
 
 export {
-  API_BASE_URL,
+  API,
   ApiError,
   fetchJson,
   getDisplayError,

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { API_BASE_URL, getSongUrl } from "../../services/api";
+import { API, getSongUrl } from "../../services/api";
 import IconButton from "../../components/IconButton";
 
 const SECTION_OFFSET_SECONDS = 1;
@@ -121,13 +121,13 @@ export default function Player({
 
     if (navigator.sendBeacon) {
       const blob = new Blob([body], { type: "application/json" });
-      navigator.sendBeacon(`${API_BASE_URL}/history`, blob);
+      navigator.sendBeacon(`${API}/history`, blob);
       return;
     }
 
     setLoading?.((current) => ({ ...current, history: true }));
 
-    fetch(`${API_BASE_URL}/history`, {
+    fetch(`${API}/history`, {
       body,
       headers: { "Content-Type": "application/json" },
       keepalive: true,

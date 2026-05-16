@@ -4,7 +4,7 @@ import GlobalLyricsSearch from "../features/player/GlobalLyricsSearch";
 import Lyrics from "../features/player/Lyrics";
 import Player from "../features/player/Player";
 import QueryBox from "../features/player/QueryBox";
-import { API_BASE_URL, fetchJson, getDisplayError } from "../services/api";
+import { API, fetchJson, getDisplayError } from "../services/api";
 
 const ICON_SHUFFLE = "\u21c6";
 const TARGET_SAMPLE_RATE = 16000;
@@ -172,7 +172,7 @@ function VoiceMicButton({ song, setAction }) {
 
       setStatus("processing");
 
-      const voiceResponse = await fetch(`${API_BASE_URL}/voice`, {
+      const voiceResponse = await fetch(`${API}/voice`, {
         method: "POST",
         headers: {
           "Content-Type": "audio/wav",
